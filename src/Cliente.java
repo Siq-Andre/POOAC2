@@ -1,12 +1,13 @@
+import java.time.LocalDateTime; //importando o pacote para usar data como atributo
 public class Cliente{
     private String nome;
-    private Endereco enderecoCliente;
-    private String dataCadastro;
+    private Endereco enderecoCliente; //usando a classe Endereco como atributo
+    private LocalDateTime dataDeCadastro;
     
-    public Cliente(String nome, Endereco enderecoCliente, String dataCadastro) {
+    public Cliente(String nome, Endereco enderecoCliente) {
         this.nome = nome;
         this.enderecoCliente = enderecoCliente;
-        this.dataCadastro = dataCadastro;
+        this.dataDeCadastro = LocalDateTime.now();
     }
 
     public String getNome() {
@@ -25,14 +26,14 @@ public class Cliente{
         this.enderecoCliente = enderecoCliente;
     }
 
-    public String getDataCadastro() {
-        return dataCadastro;
+    public LocalDateTime getDataDeCadastro() {
+        return dataDeCadastro;
     }
 
-    public void setDataCadastro(String dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    //não há setDataDeCadastro. A data de cadastro permanece a mesma desde a criação do objeto
+    
+    public void paraString(){
+        System.out.println("Nome: " + nome + "\nRua: " + enderecoCliente.getRua() + "\nNúmero: " + enderecoCliente.getNumero() + "\nBairro: " + enderecoCliente.getBairro() + "\nCEP: " + enderecoCliente.getCEP() + "\nCidade: " + enderecoCliente.getCidade() + "\nEstado: " + enderecoCliente.getEstado());
     }
-    
-   
-    
 }
+  

@@ -65,11 +65,6 @@ public class Endereco {
 
     public void paraString()
     {
-        System.out.println("Rua: " + rua);
-        System.out.println("Número: " + numero);
-        System.out.println("Bairro: " + bairro);
-        System.out.println("CEP: " + CEP);
-        System.out.println("Cidade: " + cidade);
-        System.out.println("Estado: " + estado);
+        System.out.println("Rua: " + rua + "\nNúmero: " + numero + "\nBairro: " + bairro + "\nCEP: " + CEP + "\nCidade: " + cidade + "\nEstado: " + estado);
     }
 }
