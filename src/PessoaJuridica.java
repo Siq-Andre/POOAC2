@@ -35,6 +35,8 @@ public class PessoaJuridica extends Cliente{
         this.prazoMaxPagamento = prazoMaxPagamento;
     }
 
-    
+    public void paraString(){
+        System.out.println("Nome: " + razaoSocial  + "\nCNPJ: " + CNPJ + "\nRua: " + enderecoCliente.getRua() + "\nNúmero: " + enderecoCliente.getNumero() + "\nBairro: " + enderecoCliente.getBairro() + "\nCEP: " + enderecoCliente.getCEP() + "\nCidade: " + enderecoCliente.getCidade() + "\nEstado: " + enderecoCliente.getEstado());
+    }
     
 }

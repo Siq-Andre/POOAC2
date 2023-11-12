@@ -1,8 +1,8 @@
 import java.time.LocalDateTime; //importando o pacote para usar data como atributo
 public class Cliente{
-    private String nome;
-    private Endereco enderecoCliente; //usando a classe Endereco como atributo
-    private LocalDateTime dataDeCadastro;
+    protected String nome;
+    protected Endereco enderecoCliente; //usando a classe Endereco como atributo
+    protected LocalDateTime dataDeCadastro;
     
     public Cliente(String nome, Endereco enderecoCliente) {
         this.nome = nome;
