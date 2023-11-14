@@ -10,7 +10,6 @@ public class Cliente{
         this.enderecoCliente = enderecoCliente;
         this.dataDeCadastro = LocalDateTime.now();
         this.documento = documento;
-        this.dataDeCadastro = LocalDateTime.now();
     }
 
     public String getNome() {

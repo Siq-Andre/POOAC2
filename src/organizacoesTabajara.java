@@ -48,7 +48,7 @@ public class organizacoesTabajara extends funcoes{
                 //deletarClientePorNome();
                 break;
             case 4:
-                //cadastrarProduto();
+                cadastrarProduto();
                 break;
             case 5:
                 //efetuarCompra();

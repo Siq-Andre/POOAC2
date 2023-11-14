@@ -2,9 +2,12 @@ import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public abstract class funcoes {
 
+    //funçao para cadastrar os dados de um novo cliente
     public static void cadastrarCliente() {
         String nome = JOptionPane.showInputDialog("Digite o nome do cliente:");
         String documento = JOptionPane.showInputDialog("Digite o CPF ou CNPJ do cliente:");
@@ -16,13 +19,14 @@ public abstract class funcoes {
         String cidade = JOptionPane.showInputDialog("Digite a cidade: ");
         Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado);
 
-
+        //verificação se o cliente é pessoa fisica ou juridica. Se o documento possui mais de 8 digitos, é um CNPJ
         if (documento.length() > 8){
             PessoaJuridica pj = new PessoaJuridica(nome, documento, endereco);
             String razaoSocial = JOptionPane.showInputDialog("Digite a razão social da empresa: ");
             int prazoMaxPagamento = Integer.parseInt(JOptionPane.showInputDialog("Digite o prazo máximo de pagamento da empresa (em dias): "));
             salvar(pj);
         }
+        //se nao for um CNPJ, então é um CPF
         else{
             PessoaFisica pf = new PessoaFisica(nome, documento, endereco);
             int qtdeMaxParcelas = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade maxima de parcelas a serem pagas: "));
@@ -31,6 +35,7 @@ public abstract class funcoes {
         JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    //função para salvar o cliente caso seja pessoa juridica
     private static void salvar(PessoaJuridica pj) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
             String endereco = pj.enderecoCliente.paraString();
@@ -43,6 +48,7 @@ public abstract class funcoes {
         }
     }
 
+    //função para salvar o cliente caso seja pessoa fisica
     private static void salvar(PessoaFisica pf) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
             String endereco = pf.enderecoCliente.paraString();
@@ -66,8 +72,20 @@ public abstract class funcoes {
         }
     }
 
+
+    public static void cadastrarProduto(){
+        String codigo = JOptionPane.showInputDialog("Digite o código do produto:");
+        String nome = JOptionPane.showInputDialog("Digite o nome do produto:");
+        String descricao = JOptionPane.showInputDialog("Digite a descricao do produto: ");
+        double preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o preco do produto: "));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+        LocalDateTime validade = LocalDateTime.parse(JOptionPane.showInputDialog("Digite a validade do produto se houver: "));
+        Produto produto = new Produto(codigo, nome, descricao, preco, validade);
+        salvar(produto);
+    }
+
     private static void salvar(Produto produto) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("baseDados/produtos.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("produtos.txt", true))) {
             // Append no arquivo (true como segundo argumento para FileWriter)
             writer.write(produto.getCodigo() + ", " + produto.getNome() + ", " + produto.getDescricao() + ", " + produto.getPreco() + ", " + produto.getValidade());
             writer.newLine();
