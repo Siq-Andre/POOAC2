@@ -15,21 +15,19 @@ public abstract class funcoes {
         String estado = JOptionPane.showInputDialog("Digite o estado: ");
         String cidade = JOptionPane.showInputDialog("Digite a cidade: ");
         Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado);
-        Cliente cliente = new Cliente(nome, documento, endereco);
+
 
         if (documento.length() > 8){
-            PessoaJuridica pj = (PessoaJuridica)cliente;
+            PessoaJuridica pj = new PessoaJuridica(nome, documento, endereco);
             String razaoSocial = JOptionPane.showInputDialog("Digite a razão social da empresa: ");
             int prazoMaxPagamento = Integer.parseInt(JOptionPane.showInputDialog("Digite o prazo máximo de pagamento da empresa (em dias): "));
             salvar(pj);
         }
         else{
-            PessoaFisica pf = (PessoaFisica)cliente;
+            PessoaFisica pf = new PessoaFisica(nome, documento, endereco);
             int qtdeMaxParcelas = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade maxima de parcelas a serem pagas: "));
             salvar(pf);
         }
-        // Salvar os dados no arquivo
-
         JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -37,7 +35,7 @@ public abstract class funcoes {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
             String endereco = pj.enderecoCliente.paraString();
             // Append no arquivo (true como segundo argumento para FileWriter)
-            writer.write(pj.nome + ", " + pj.getDocumento() + ", " + endereco);
+            writer.write(pj.nome + ", " + pj.getDocumento() + ", " + pj.getRazaoSocial() + ", " +pj.getPrazoMaxPagamento() + ", " + endereco);
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
