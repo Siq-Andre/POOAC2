@@ -17,7 +17,7 @@ public class Compra {
         this.valorTotal = valorTotal;
         this.identificador = identificador;
         this.dataDeCompra = dataDeCompra;
-        this.documento = documento;
+        this.documentoCliente = documento;
     }
 
     public String getDocumentoCliente(){

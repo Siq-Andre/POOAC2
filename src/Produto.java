@@ -8,12 +8,12 @@ public class Produto {
     protected LocalDateTime validade;
     
     //construtor para produto com data de validade
-    public Produto(String codigo, String nome, String descricao, double preco, LocalDateTime dataDeCadastro) {
+    public Produto(String codigo, String nome, String descricao, double preco, LocalDateTime validade) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.validade = dataDeCadastro;
+        this.validade = validade;
     }
 
     //construtor para produtos sem data de validade

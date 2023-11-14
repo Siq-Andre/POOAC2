@@ -20,12 +20,15 @@ public abstract class funcoes {
         if (documento.length() > 8){
             PessoaJuridica pj = (PessoaJuridica)cliente;
             String razaoSocial = JOptionPane.showInputDialog("Digite a razão social da empresa: ");
-            String prazoMaxPagamento = JOptionPane.showInputDialog("Digite o prazo máximo de pagamento da empresa (em dias): ");
-
+            int prazoMaxPagamento = Integer.parseInt(JOptionPane.showInputDialog("Digite o prazo máximo de pagamento da empresa (em dias): "));
+            salvar(pj);
         }
-
+        else{
+            PessoaFisica pf = (PessoaFisica)cliente;
+            int qtdeMaxParcelas = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade maxima de parcelas a serem pagas: "));
+            salvar(pf);
+        }
         // Salvar os dados no arquivo
-        salvar(cliente);
 
         JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -46,7 +49,7 @@ public abstract class funcoes {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
             String endereco = pf.enderecoCliente.paraString();
             // Append no arquivo (true como segundo argumento para FileWriter)
-            writer.write(pf.nome + ", " + pf.getDocumento() + ", " + pf.getQtdeMaxParcelas() + ", " + endereco);
+            writer.write(pf.getNome() + ", " + pf.getDocumento() + ", " + pf.getQtdeMaxParcelas() + ", " + endereco);
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,7 +71,7 @@ public abstract class funcoes {
     private static void salvar(Produto produto) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("baseDados/produtos.txt", true))) {
             // Append no arquivo (true como segundo argumento para FileWriter)
-            writer.write(produto.codigo + ", " + produto.nome + ", " + produto.descricao + ", " + produto.preco + ", " + produto.validade);
+            writer.write(produto.getCodigo() + ", " + produto.getNome() + ", " + produto.getDescricao() + ", " + produto.getPreco() + ", " + produto.getValidade());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
