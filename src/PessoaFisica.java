@@ -1,16 +1,15 @@
 public class PessoaFisica extends Cliente {
-    private String CPF;
     private int qtdeMaxParcelas;
-    public PessoaFisica(String nome, Endereco enderecoCliente, String CPF, int qtdeMaxParcelas) {
-        super(nome, enderecoCliente);
-        this.CPF = CPF;
-        this.qtdeMaxParcelas = qtdeMaxParcelas;
+
+    public PessoaFisica(String nome, String documento, Endereco enderecoCliente) {
+        super(nome, documento, enderecoCliente);
     }
+
     public String getCPF() {
-        return CPF;
+        return documento;
     }
     public void setCPF(String CPF) {
-        this.CPF = CPF;
+        this.documento = CPF;
     }
     public int getQtdeMaxParcelas() {
         return qtdeMaxParcelas;
@@ -20,7 +19,7 @@ public class PessoaFisica extends Cliente {
     }
 
     public void paraString(){
-        System.out.println("Nome: " + getNome() +"\nCPF: " + CPF + "\nRua: " + enderecoCliente.getRua() + "\nNúmero: " + enderecoCliente.getNumero() + "\nBairro: " + enderecoCliente.getBairro() + "\nCEP: " + enderecoCliente.getCEP() + "\nCidade: " + enderecoCliente.getCidade() + "\nEstado: " + enderecoCliente.getEstado());
+        System.out.println("Nome: " + getNome() +"\nCPF: " + documento + "\nRua: " + enderecoCliente.getRua() + "\nNúmero: " + enderecoCliente.getNumero() + "\nBairro: " + enderecoCliente.getBairro() + "\nCEP: " + enderecoCliente.getCEP() + "\nCidade: " + enderecoCliente.getCidade() + "\nEstado: " + enderecoCliente.getEstado());
     }
     
 }

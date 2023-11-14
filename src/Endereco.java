@@ -63,8 +63,8 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public void paraString()
+    public String paraString()
     {
-        System.out.println("Rua: " + rua + "\nNúmero: " + numero + "\nBairro: " + bairro + "\nCEP: " + CEP + "\nCidade: " + cidade + "\nEstado: " + estado);
+        return ("Rua: " + rua + " Número: " + numero + " Bairro: " + bairro + " CEP: " + CEP + " Cidade: " + cidade + " Estado: " + estado);
     }
 }

@@ -6,7 +6,7 @@ public class Compra {
     protected double[] valorTotal;
     protected String identificador;
     protected LocalDateTime dataDeCompra;
-    protected String documento; //esse atributo pode ser preenchido com o CPF ou CNPJ do cliente
+    protected String documentoCliente; //esse atributo será preenchido com o CPF ou CNPJ do cliente
     
     
     public Compra(int[] quantidade, Produto[] produto, double[] precoUnitario, double[] valorTotal, String identificador,
@@ -19,7 +19,10 @@ public class Compra {
         this.dataDeCompra = dataDeCompra;
         this.documento = documento;
     }
-    
+
+    public String getDocumentoCliente(){
+        return this.documentoCliente;
+    }
 }
 
 

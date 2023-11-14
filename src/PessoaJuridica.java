@@ -1,22 +1,17 @@
 public class PessoaJuridica extends Cliente{
-    private String CNPJ;
     private String razaoSocial;
     private int prazoMaxPagamento;
-    
-    public PessoaJuridica(String nome, Endereco enderecoCliente, String CNPJ, String razaoSocial,
-            int prazoMaxPagamento) {
-        super(nome, enderecoCliente);
-        this.CNPJ = CNPJ;
-        this.razaoSocial = razaoSocial;
-        this.prazoMaxPagamento = prazoMaxPagamento;
+
+    public PessoaJuridica(String nome, String documento, Endereco enderecoCliente) {
+        super(nome, documento, enderecoCliente);
     }
 
     public String getCNPJ() {
-        return CNPJ;
+        return documento;
     }
 
     public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;
+        this.documento = CNPJ;
     }
 
     public String getRazaoSocial() {
@@ -36,7 +31,7 @@ public class PessoaJuridica extends Cliente{
     }
 
     public void paraString(){
-        System.out.println("Nome: " + razaoSocial  + "\nCNPJ: " + CNPJ + "\nRua: " + enderecoCliente.getRua() + "\nNúmero: " + enderecoCliente.getNumero() + "\nBairro: " + enderecoCliente.getBairro() + "\nCEP: " + enderecoCliente.getCEP() + "\nCidade: " + enderecoCliente.getCidade() + "\nEstado: " + enderecoCliente.getEstado());
+        System.out.println("Nome: " + razaoSocial  + "\nCNPJ: " + documento + "\nRua: " + enderecoCliente.getRua() + "\nNúmero: " + enderecoCliente.getNumero() + "\nBairro: " + enderecoCliente.getBairro() + "\nCEP: " + enderecoCliente.getCEP() + "\nCidade: " + enderecoCliente.getCidade() + "\nEstado: " + enderecoCliente.getEstado());
     }
     
 }
