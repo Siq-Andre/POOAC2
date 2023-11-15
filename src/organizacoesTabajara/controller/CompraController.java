@@ -26,7 +26,7 @@ public class CompraController {
         }
     }
 
-    private static void efetuarCompra(){
+    /*private static void efetuarCompra(){
 
         String nome = JOptionPane.showInputDialog("Digite o nome do cliente:");
         String documento = JOptionPane.showInputDialog("Digite o CPF ou CNPJ do cliente:");
@@ -52,5 +52,5 @@ public class CompraController {
             PfController.salvar(pf);
         }
         JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
-    }
+    }*/
 }

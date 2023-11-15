@@ -56,7 +56,7 @@ public class organizacoesTabajara {
                 cadastrarProduto();
                 break;
             case 5:
-                efetuarCompra();
+                //efetuarCompra();
                 break;
             case 6:
                 //atualizarSituacaoPagamento();
