@@ -67,7 +67,7 @@ public class organizacoesTabajara {
                 //exibirRelatorios();
 
                 //funções para serem chamadas no exibir relatorio
-                //buscarCliente(); -> filtro ta esquisito
+                buscarCliente(); //-> filtro ta esquisito
                 //listarProdutos(); -> funciona mas tem que corrigir a caixa de texto input
                 //buscarProduto(); -> filtro ta esquisito
                 break;

@@ -11,6 +11,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static organizacoesTabajara.controller.PfController.salvar;
 import static organizacoesTabajara.controller.PjController.salvar;
@@ -119,21 +121,29 @@ public class ClienteController {
     public static void buscarCliente(){
         String nome = JOptionPane.showInputDialog("Digite o nome do cliente:");
         String arquivo = "src/organizacoesTabajara/baseDados/clientes.txt";
+        List<String> clientesEncontrados = new ArrayList<>();
+
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
                 String[] partes = linha.split(",");
                 String nomeLinha = partes[0].trim();
 
-                if (!nomeLinha.equals(nome)) {
-                    JOptionPane.showInputDialog(null, linha, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                if (nomeLinha.equals(nome)) {
+                    clientesEncontrados.add(linha);
                 }
-                else{
-                    JOptionPane.showInputDialog(null, "Não há clientes com esse nome.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            }
+
+            if (clientesEncontrados.isEmpty()) {
+                JOptionPane.showInputDialog(null, "Não há clientes com esse nome.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                StringBuilder mensagem = new StringBuilder();
+                for (String cliente : clientesEncontrados) {
+                    mensagem.append(cliente).append("\n");
                 }
-            } 
-        }
-        catch (IOException e) {
+                JOptionPane.showInputDialog(null, mensagem.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            }
+        } catch (IOException e) {
             e.printStackTrace(); // ou trate a exceção de acordo com a sua necessidade
         }
     }
