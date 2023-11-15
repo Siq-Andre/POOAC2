@@ -3,6 +3,7 @@ package organizacoesTabajara;
 import javax.swing.JOptionPane;
 
 import static organizacoesTabajara.controller.ClienteController.*;
+import static organizacoesTabajara.controller.CompraController.efetuarCompra;
 import static organizacoesTabajara.controller.ProdutoController.cadastrarProduto;
 
 public class organizacoesTabajara {
@@ -56,7 +57,7 @@ public class organizacoesTabajara {
                 cadastrarProduto();
                 break;
             case 5:
-                //efetuarCompra();
+                efetuarCompra();
                 break;
             case 6:
                 //atualizarSituacaoPagamento();

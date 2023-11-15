@@ -12,7 +12,7 @@ public class PfController {
 
     //função para salvar o cliente caso seja pessoa fisica
     protected static void salvar(PessoaFisica pf) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/organizacoesTabajara/baseDados/clientes.txt", true))) {
             Endereco endereco = pf.getEnderecoCliente();
             // Append no arquivo (true como segundo argumento para FileWriter)
             writer.write(pf.getNome() + ", " + pf.getDocumento() + ", " + pf.getQtdeMaxParcelas() + ", " + endereco.paraString());

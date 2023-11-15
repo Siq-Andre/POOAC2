@@ -16,7 +16,7 @@ public class CompraController {
 
 
     private static void salvar(Compra compra) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("baseDados/compras.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/organizacoesTabajara/baseDados/compras.txt", true))) {
             // Append no arquivo (true como segundo argumento para FileWriter)
             writer.write(compra.getDocumentoCliente() + ", " + compra.getQuantidade() + ", " + compra.getProduto() + ", " + compra.getPrecoUnitario() + ", " + compra.getValorTotal() + ", " + compra.getIdentificador() + ", " + compra.getDataDeCompra());
             writer.newLine();
@@ -26,31 +26,18 @@ public class CompraController {
         }
     }
 
-    /*private static void efetuarCompra(){
+    public static void efetuarCompra(){
 
-        String nome = JOptionPane.showInputDialog("Digite o nome do cliente:");
-        String documento = JOptionPane.showInputDialog("Digite o CPF ou CNPJ do cliente:");
-        String rua = JOptionPane.showInputDialog("Digite a rua: ");
-        String numero = JOptionPane.showInputDialog("Digite o numero: ");
-        String bairro = JOptionPane.showInputDialog("Digite o bairro: ");
-        String cep = JOptionPane.showInputDialog("Digite o cep: ");
-        String estado = JOptionPane.showInputDialog("Digite o estado: ");
-        String cidade = JOptionPane.showInputDialog("Digite a cidade: ");
-        Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado);
+        boolean continuar = true;
 
-        //verificação se o cliente é pessoa fisica ou juridica. Se o documento possui mais de 11 digitos, é um CNPJ
-        if (documento.length() > 11){
-            PessoaJuridica pj = new PessoaJuridica(nome, documento, endereco);
-            String razaoSocial = JOptionPane.showInputDialog("Digite a razão social da empresa: ");
-            int prazoMaxPagamento = Integer.parseInt(JOptionPane.showInputDialog("Digite o prazo máximo de pagamento da empresa (em dias): "));
-            salvar(pj);
+
+
+        while (continuar){
+    
         }
-        //se nao for um CNPJ, então é um CPF
-        else{
-            PessoaFisica pf = new PessoaFisica(nome, documento, endereco);
-            int qtdeMaxParcelas = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade maxima de parcelas a serem pagas: "));
-            PfController.salvar(pf);
-        }
-        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
-    }*/
+
+        //Compra compra = new Compra();
+
+        JOptionPane.showMessageDialog(null, "Compra cadastrada com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

@@ -45,7 +45,7 @@ public class ClienteController {
 
     public static void deletarClientePorDocumento(){
         String documento = JOptionPane.showInputDialog("Digite o CPF ou CNPJ do cliente a ser excluído:");
-        String arquivo = "clientes.txt";
+        String arquivo = "src/organizacoesTabajara/baseDados/clientes.txt";
 
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo));
              BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivo + ".temp"))) {
@@ -77,7 +77,7 @@ public class ClienteController {
 
     public static void deletarClientePorNome(){
         String nome = JOptionPane.showInputDialog("Digite o nome do cliente a ser excluído:");
-        String arquivo = "clientes.txt";
+        String arquivo = "src/organizacoesTabajara/baseDados/clientes.txt";
 
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo));
              BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivo + ".temp"))) {
