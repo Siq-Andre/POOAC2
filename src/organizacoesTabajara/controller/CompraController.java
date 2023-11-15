@@ -6,7 +6,10 @@ import organizacoesTabajara.compra.Compra;
 import organizacoesTabajara.endereco.Endereco;
 
 import javax.swing.*;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -39,5 +42,18 @@ public class CompraController {
         //Compra compra = new Compra();
 
         JOptionPane.showMessageDialog(null, "Compra cadastrada com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    //listar todas as compras
+    public static void listarCompras(){
+         String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                JOptionPane.showInputDialog(null, linha, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // ou trate a exceção de acordo com a sua necessidade
+        }      
     }
 }

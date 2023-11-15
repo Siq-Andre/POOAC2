@@ -3,11 +3,15 @@ package organizacoesTabajara.controller;
 import organizacoesTabajara.produto.Produto;
 
 import javax.swing.*;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class ProdutoController {
     public static void cadastrarProduto(){
@@ -38,6 +42,42 @@ public class ProdutoController {
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Erro ao salvar produto no arquivo.", "Organizações Tabajara", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    //funçao para listar todos os produtos
+    public static void listarProdutos(){
+        String arquivo = "src/organizacoesTabajara/baseDados/produtos.txt";
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                JOptionPane.showInputDialog(null, linha, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // ou trate a exceção de acordo com a sua necessidade
+        }      
+  
+    }
+    //função para listar um produto especifico
+    public static void buscarProduto()
+    {        
+        String nome = JOptionPane.showInputDialog("Digite o produto:");
+        String arquivo = "src/organizacoesTabajara/baseDados/produtos.txt";
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(",");
+                String nomeLinha = partes[0].trim();
+
+                if (!nomeLinha.equals(nome)) {
+                    JOptionPane.showInputDialog(null, linha, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                }
+                else{
+                    JOptionPane.showInputDialog(null, "Não há clientes com esse nome.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                }
+            } 
+        }
+        catch (IOException e) {
+            e.printStackTrace(); // ou trate a exceção de acordo com a sua necessidade
         }
     }
 

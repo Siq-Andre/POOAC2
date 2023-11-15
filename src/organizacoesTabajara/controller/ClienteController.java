@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 
 import static organizacoesTabajara.controller.PfController.salvar;
 import static organizacoesTabajara.controller.PjController.salvar;
@@ -111,6 +112,29 @@ public class ClienteController {
                     java.nio.file.StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    //funçao para buscar cliente especifico
+    public static void buscarCliente(){
+        String nome = JOptionPane.showInputDialog("Digite o nome do cliente:");
+        String arquivo = "src/organizacoesTabajara/baseDados/clientes.txt";
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(",");
+                String nomeLinha = partes[0].trim();
+
+                if (!nomeLinha.equals(nome)) {
+                    JOptionPane.showInputDialog(null, linha, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                }
+                else{
+                    JOptionPane.showInputDialog(null, "Não há clientes com esse nome.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                }
+            } 
+        }
+        catch (IOException e) {
+            e.printStackTrace(); // ou trate a exceção de acordo com a sua necessidade
         }
     }
 

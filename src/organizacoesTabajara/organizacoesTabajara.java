@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import static organizacoesTabajara.controller.ClienteController.*;
 import static organizacoesTabajara.controller.CompraController.efetuarCompra;
 import static organizacoesTabajara.controller.ProdutoController.cadastrarProduto;
+import static organizacoesTabajara.controller.ProdutoController.listarProdutos;
 
 public class organizacoesTabajara {
 
@@ -64,6 +65,11 @@ public class organizacoesTabajara {
                 break;
             case 7:
                 //exibirRelatorios();
+
+                //funções para serem chamadas no exibir relatorio
+                //buscarCliente(); -> filtro ta esquisito
+                //listarProdutos(); -> funciona mas tem que corrigir a caixa de texto input
+                //buscarProduto(); -> filtro ta esquisito
                 break;
             case 8:
                 JOptionPane.showMessageDialog(null, "Sistema encerrado.", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);

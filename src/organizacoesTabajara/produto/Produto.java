@@ -76,4 +76,13 @@ public class Produto {
             return false;
         }
     }
+
+    public void paraString(){
+        System.out.println("\nCódigo: " + getCodigo() + "\nNome: " + getNome() + "\nDescrição: " + getDescricao() + "\nPreço: " + getPreco());
+        if(getValidade() == null){
+            System.out.println("Validade: Produto não possui validade");
+        } else{
+            System.out.println("Validade: " + getValidade());
+        }
+    }
 }
