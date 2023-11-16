@@ -2,52 +2,56 @@ package organizacoesTabajara.compra;
 
 import organizacoesTabajara.produto.Produto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 public class Compra {
-    protected int[] quantidade;
-    protected Produto[] produto;
-    protected double[] precoUnitario;
-    protected double[] valorTotal;
-    protected String identificador;
-    protected LocalDateTime dataDeCompra;
+    protected ArrayList<Integer> quantidade;
+    protected ArrayList<Produto> produto;
+    protected ArrayList<Double> precoUnitario;
+    protected ArrayList<Double> valorTotalItem;
+    protected double valorTotalCompra;
+    protected static int identificador;
+    protected LocalDate dataDeCompra;
     protected String documentoCliente; //esse atributo será preenchido com o CPF ou CNPJ do cliente
     
     
-    public Compra(int[] quantidade, Produto[] produto, double[] precoUnitario, double[] valorTotal, String identificador,
-                  LocalDateTime dataDeCompra, String documento) {
+    public Compra(ArrayList<Integer> quantidade, ArrayList<Produto> produto, ArrayList<Double> precoUnitario, ArrayList<Double> valorTotalItem, double valorTotalCompra, String documento) {
         this.quantidade = quantidade;
         this.produto = produto;
         this.precoUnitario = precoUnitario;
-        this.valorTotal = valorTotal;
-        this.identificador = identificador;
-        this.dataDeCompra = dataDeCompra;
+        this.valorTotalItem = valorTotalItem;
+        this.valorTotalCompra = valorTotalCompra;
+        this.identificador += 1;
+        this.dataDeCompra = LocalDate.now();
         this.documentoCliente = documento;
     }
 
     public String getDocumentoCliente(){
         return this.documentoCliente;
     }
-    public int[] getQuantidade(){
+    public ArrayList<Integer> getQuantidade(){
         return this.quantidade;
     }
 
-    public Produto[] getProduto() {
+    public ArrayList<Produto> getProduto() {
         return produto;
     }
 
-    public double[] getPrecoUnitario() {
+    public ArrayList<Double> getPrecoUnitario() {
         return precoUnitario;
     }
 
-    public double[] getValorTotal() {
-        return valorTotal;
+    public ArrayList<Double> getValorTotal() {
+        return valorTotalItem;
     }
 
-    public String getIdentificador() {
+    public int getIdentificador() {
         return identificador;
     }
 
-    public LocalDateTime getDataDeCompra() {
+    public LocalDate getDataDeCompra() {
         return dataDeCompra;
     }
 }
