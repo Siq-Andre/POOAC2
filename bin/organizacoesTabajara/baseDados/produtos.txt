@@ -1,0 +1,4 @@
+10, nome, noem, 10.0, null
+321, teclado, teclado gamer com luzes LED, 220.0, null
+444, tomate, tomate vermelho produzido no vale do orvalho, 15.0, 2024-02-10
+999, tomate joja, tomate dos produtores joja, 5.0, 2020-11-11

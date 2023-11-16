@@ -4,8 +4,10 @@ import javax.swing.JOptionPane;
 
 import static organizacoesTabajara.controller.ClienteController.*;
 import static organizacoesTabajara.controller.CompraController.efetuarCompra;
+import static organizacoesTabajara.controller.ProdutoController.buscarProduto;
 import static organizacoesTabajara.controller.ProdutoController.cadastrarProduto;
 import static organizacoesTabajara.controller.ProdutoController.listarProdutos;
+import static organizacoesTabajara.controller.ProdutoController.produtoVencido;
 
 public class organizacoesTabajara {
 
@@ -67,9 +69,10 @@ public class organizacoesTabajara {
                 //exibirRelatorios();
 
                 //funções para serem chamadas no exibir relatorio
-                buscarCliente(); //-> filtro ta esquisito
-                //listarProdutos(); -> funciona mas tem que corrigir a caixa de texto input
-                //buscarProduto(); -> filtro ta esquisito
+                //buscarCliente(); //(a)
+                //listarProdutos(); //(b)
+                //buscarProduto();  //(c)
+                produtoVencido(); //(d)
                 break;
             case 8:
                 JOptionPane.showMessageDialog(null, "Sistema encerrado.", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);

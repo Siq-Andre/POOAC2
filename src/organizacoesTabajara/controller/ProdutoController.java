@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoController {
     public static void cadastrarProduto(){
@@ -47,13 +48,16 @@ public class ProdutoController {
     //funçao para listar todos os produtos
     public static void listarProdutos(){
         String arquivo = "src/organizacoesTabajara/baseDados/produtos.txt";
+        List<String> produtos = new ArrayList<>();
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                JOptionPane.showInputDialog(null, linha, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                produtos.add(linha);
+                produtos.add("\n");
             }
+            JOptionPane.showInputDialog(null, produtos, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
-            e.printStackTrace(); // ou trate a exceção de acordo com a sua necessidade
+            e.printStackTrace(); 
         }      
   
     }
@@ -61,24 +65,52 @@ public class ProdutoController {
     public static void buscarProduto()
     {        
         String nome = JOptionPane.showInputDialog("Digite o produto:");
-        String arquivo = "src/organizacoesTabajara/baseDados/produtos.txt";
+        String arquivo = "src/organizacoesTabajara/baseDados/produtos.txt";        
+        List<String> produtosEncontrados = new ArrayList<>();
+
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
                 String[] partes = linha.split(",");
-                String nomeLinha = partes[0].trim();
+                String nomeLinha = partes[1].trim();
 
-                if (!nomeLinha.equals(nome)) {
-                    JOptionPane.showInputDialog(null, linha, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
-                }
-                else{
-                    JOptionPane.showInputDialog(null, "Não há clientes com esse nome.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
-                }
+                if (nomeLinha.equals(nome)) {
+                    produtosEncontrados.add(linha);
+                }                
             } 
+            if (produtosEncontrados.isEmpty()) {
+                JOptionPane.showInputDialog(null, "Não há esse produto disponível.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                StringBuilder mensagem = new StringBuilder();
+                for (String produto : produtosEncontrados) {
+                    mensagem.append(produto).append("\n");
+                }
+                JOptionPane.showInputDialog(null, mensagem.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            }
         }
         catch (IOException e) {
-            e.printStackTrace(); // ou trate a exceção de acordo com a sua necessidade
+            e.printStackTrace(); 
         }
     }
 
+    public static void produtoVencido(){
+        String arquivo = "src/organizacoesTabajara/baseDados/produtos.txt";
+        List<String> produtosVencidos = new ArrayList<>();
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(",");
+                LocalDate dataValidade = LocalDate.parse(partes[5], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                // Chame a função para verificar se o produto está vencido
+                if(LocalDate.now().isAfter(dataValidade)){
+                    produtosVencidos.add(linha);
+                    produtosVencidos.add("\n");
+                }                 
+            }
+            JOptionPane.showInputDialog(null, produtosVencidos, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
+    }
 }
