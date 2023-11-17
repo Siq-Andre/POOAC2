@@ -135,7 +135,7 @@ public class ClienteController {
             }
 
             if (clientesEncontrados.isEmpty()) {
-                JOptionPane.showInputDialog(null, "Não há clientes com esse nome.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Não há clientes com esse nome.", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 StringBuilder mensagem = new StringBuilder();
                 for (String cliente : clientesEncontrados) {
