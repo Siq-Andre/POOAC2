@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,7 +148,7 @@ public class CompraController {
                 compras.add(linha);
                 compras.add("\n");
             }
-            JOptionPane.showInputDialog(null, compras, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, compras, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace();
         }      
@@ -163,16 +164,118 @@ public class CompraController {
                 String numLinha = partes[0].trim();
 
                 if (numLinha.equals(numero)) {
-                    JOptionPane.showInputDialog(null, linha.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, linha.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
                     cont++;
                 } 
             }
             if (cont ==0) {
-                JOptionPane.showInputDialog(null, "Essa compra não existe", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Essa compra não existe", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
             }
         }
         catch (IOException e) {
             e.printStackTrace(); 
         }
+    }
+
+    public static void comprasNaoPagas(){
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        List<String> comprasNaoPagas = new ArrayList<>();
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                double valorTotalCompra = Double.parseDouble(partes[6].trim());
+                double valorPago = Double.parseDouble(partes[8].trim());
+                if(valorPago != valorTotalCompra){
+                    comprasNaoPagas.add(linha);
+                    comprasNaoPagas.add("\n");
+                }                 
+            }
+            JOptionPane.showMessageDialog(null, comprasNaoPagas, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
+    }
+    public static void compraMaisCara(){
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        String infoCompra = null;
+        double valor;
+        double maisCara = -1;
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                valor = Double.parseDouble(partes[6].trim());
+                if (maisCara == -1){
+                    maisCara = Double.parseDouble(partes[6].trim());
+                    infoCompra = linha;
+                }
+                if(valor > maisCara){
+                    infoCompra = linha;
+                    maisCara = valor;
+                }                                
+            }
+            JOptionPane.showMessageDialog(null, infoCompra, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
+    }
+    public static void compraMaisBarata(){
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        String infoCompra = null;
+        double valor;
+        double maisBarata = -1;
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                valor = Double.parseDouble(partes[6].trim());
+                if (maisBarata == -1){
+                    maisBarata = Double.parseDouble(partes[6].trim());
+                    infoCompra = linha;
+                }
+                if(valor < maisBarata){
+                    infoCompra = linha;
+                    maisBarata = valor;
+                }                                
+            }
+            JOptionPane.showMessageDialog(null, infoCompra, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
+    }
+    public static void ultimosPagamentos(){
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        List<String> compras = new ArrayList<>();
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                compras.add(linha);
+                compras.add("\n");
+                if(compras.size() > 10){
+                    compras.remove(0);
+                }
+            }
+            JOptionPane.showMessageDialog(null, compras, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }      
+    }
+    public static void compraMes(){ //minha ideia aqui é fazer dois whiles. Um percorre o arquivo todo como normal e outro a cada mes faz uma somatoria dos valores de compra
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        List<Double> valorMeses = new ArrayList<>();
+        double somatoriaMes;
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                LocalDate mes = LocalDate.parse(partes[7], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+                
+            }
+            JOptionPane.showMessageDialog(null, valorMeses, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
     }
 }

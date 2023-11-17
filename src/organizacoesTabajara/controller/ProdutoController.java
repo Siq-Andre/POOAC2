@@ -79,7 +79,7 @@ public class ProdutoController {
                 }                
             } 
             if (produtosEncontrados.isEmpty()) {
-                JOptionPane.showInputDialog(null, "Não há esse produto disponível.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Não há esse produto disponível.", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
             } else {
                 StringBuilder mensagem = new StringBuilder();
                 for (String produto : produtosEncontrados) {

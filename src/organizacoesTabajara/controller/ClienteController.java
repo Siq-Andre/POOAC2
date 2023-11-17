@@ -141,7 +141,7 @@ public class ClienteController {
                 for (String cliente : clientesEncontrados) {
                     mensagem.append(cliente).append("\n");
                 }
-                JOptionPane.showInputDialog(null, mensagem.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, mensagem.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
             }
         } catch (IOException e) {
             e.printStackTrace(); // ou trate a exceção de acordo com a sua necessidade

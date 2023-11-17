@@ -1,2 +1,1 @@
-1, 51055052801, [3, 2], [organizacoesTabajara.produto.Produto@40f08448, organizacoesTabajara.produto.Produto@276438c9], [], [36.0, 30.0], 2023-11-15
-2, 51055052801, [10], [organizacoesTabajara.produto.Produto@49070868], [], [120.0], 2023-11-15
+5; 51055052801; [5, 20]; [Código: 3 Nome: teclado Descrição: mecanico Preço: 800.0 Validade: null, Código: 1 Nome: nescal Descrição: achocolatado Preço: 12.0 Validade: 2025-12-20]; [800.0, 12.0]; [4000.0, 240.0]; 4240.0; 2023-11-16;4020.0
