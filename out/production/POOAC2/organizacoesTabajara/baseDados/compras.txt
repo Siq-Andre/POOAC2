@@ -1,1 +1,1 @@
-5; 51055052801; [5, 20]; [Código: 3 Nome: teclado Descrição: mecanico Preço: 800.0 Validade: null, Código: 1 Nome: nescal Descrição: achocolatado Preço: 12.0 Validade: 2025-12-20]; [800.0, 12.0]; [4000.0, 240.0]; 4240.0; 2023-11-16;10.0
+5; 51055052801; [5, 20]; [Código: 3 Nome: teclado Descrição: mecanico Preço: 800.0 Validade: null, Código: 1 Nome: nescal Descrição: achocolatado Preço: 12.0 Validade: 2025-12-20]; [800.0, 12.0]; [4000.0, 240.0]; 4240.0; 2023-11-16;4020.0

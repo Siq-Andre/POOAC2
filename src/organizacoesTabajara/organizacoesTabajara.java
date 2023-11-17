@@ -5,10 +5,14 @@ import javax.swing.JOptionPane;
 import static organizacoesTabajara.controller.ClienteController.*;
 import static organizacoesTabajara.controller.CompraController.Pagar;
 import static organizacoesTabajara.controller.CompraController.efetuarCompra;
+<<<<<<< HEAD
+import static organizacoesTabajara.controller.ProdutoController.*;
+=======
 import static organizacoesTabajara.controller.ProdutoController.cadastrarProduto;
 import static organizacoesTabajara.controller.ProdutoController.produtoVencido;
 import static organizacoesTabajara.controller.CompraController.listarCompras;
 import static organizacoesTabajara.controller.CompraController.buscarCompra;
+>>>>>>> main
 
 public class organizacoesTabajara {
 
@@ -29,6 +33,15 @@ public class organizacoesTabajara {
                 "5. Efetuar Compra\n" +
                 "6. Atualizar Situação de Pagamento\n" +
                 "7. Relatórios\n" +
+                "8. Sair";
+
+        String opcaoStr = JOptionPane.showInputDialog(null, menu, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        return Integer.parseInt(opcaoStr);
+    }
+
+
+    public static void exibirRelatorios(){
+        String relatorios = "   Digite a letra da opção desejada:\n" +
                 "   (a) Clientes por Nome\n" +
                 "   (b) Todos os Produtos\n" +
                 "   (c) Buscar Produto por Nome\n" +
@@ -39,12 +52,40 @@ public class organizacoesTabajara {
                 "   (h) 10 últimas Compras Pagas\n" +
                 "   (i) Compra mais Cara\n" +
                 "   (j) Compra mais Barata\n" +
-                "   (k) Valor Total de Compras por Mês nos últimos 12 meses\n" +
-                "8. Sair";
+                "   (k) Valor Total de Compras por Mês nos últimos 12 meses\n";
 
-        String opcaoStr = JOptionPane.showInputDialog(null, menu, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
-        return Integer.parseInt(opcaoStr);
-    }
+        String relatorio = JOptionPane.showInputDialog(null, relatorios, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        switch (relatorio.toLowerCase()) {
+            case "a":
+                buscarCliente();
+                break;
+            case "b":
+                listarProdutos();
+                break;
+            case "c":
+                buscarProduto();
+                break;
+            case "d":
+                produtoVencido();
+                break;
+            case "e":
+                break;
+            case "f":
+                break;
+            case "g":
+                break;
+            case "h":
+                break;
+            case "i":
+                break;
+            case "j":
+                break;
+            case "k":
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opção inválida. Tente novamente.", "Organizações Tabajara", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
     private static void executarOpcao(int opcao) {
         switch (opcao) {
@@ -67,15 +108,18 @@ public class organizacoesTabajara {
                 Pagar();
                 break;
             case 7:
-                //exibirRelatorios();
+                exibirRelatorios();
 
                 //funções para serem chamadas no exibir relatorio
                 //buscarCliente(); //(a)
                 //listarProdutos(); //(b)
                 //buscarProduto();  //(c)
                 //produtoVencido(); //(d)
+<<<<<<< HEAD
+=======
                 //listarCompras(); //(e)
                 //buscarCompra(); //(f)
+>>>>>>> main
                 break;
             case 8:
                 JOptionPane.showMessageDialog(null, "Sistema encerrado.", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);

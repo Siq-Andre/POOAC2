@@ -55,7 +55,7 @@ public class ProdutoController {
                 produtos.add(linha);
                 produtos.add("\n");
             }
-            JOptionPane.showInputDialog(null, produtos, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, produtos, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace(); 
         }      
@@ -85,7 +85,7 @@ public class ProdutoController {
                 for (String produto : produtosEncontrados) {
                     mensagem.append(produto).append("\n");
                 }
-                JOptionPane.showInputDialog(null, mensagem.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, mensagem.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
             }
         }
         catch (IOException e) {
@@ -108,7 +108,7 @@ public class ProdutoController {
                     produtosVencidos.add("\n");
                 }                 
             }
-            JOptionPane.showInputDialog(null, produtosVencidos, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, produtosVencidos, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace(); 
         }      
