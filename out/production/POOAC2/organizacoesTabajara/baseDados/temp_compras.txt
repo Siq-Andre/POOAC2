@@ -1,4 +1,0 @@
-1, 51055052801, [3, 2], [Código: 3 Nome: teclado Descrição: mecanico Preço: 800.0 Validade: null], [], [36.0, 30.0], 2023-11-15,0
-2, 51055052801, [10], [Código: 3 Nome: teclado Descrição: mecanico Preço: 800.0 Validade: null], [], [120.0], 2023-11-15,600
-3, 51055052801, [2], [Código: 3 Nome: teclado Descrição: mecanico Preço: 800.0 Validade: null], [], [1600.0], 2023-11-16,110.0
-4, 51055052801, [9], [Código: 3 Nome: teclado Descrição: mecanico Preço: 800.0 Validade: null], [], [7200.0], 2023-11-16,71.0

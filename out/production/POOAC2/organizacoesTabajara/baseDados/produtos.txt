@@ -1,3 +1,3 @@
-1, nescal, achocolatado, 12.0, 2025-12-20
-2, Abobora, legume, 20.0, 2024-06-27
-3, teclado, mecanico, 800.0, null
+1; nescal; achocolatado; 12.0; 2025-12-20
+2; Abobora; legume; 20.0; 2024-06-27
+3; teclado; mecanico; 800.0; null

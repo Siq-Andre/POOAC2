@@ -5,7 +5,14 @@ import javax.swing.JOptionPane;
 import static organizacoesTabajara.controller.ClienteController.*;
 import static organizacoesTabajara.controller.CompraController.Pagar;
 import static organizacoesTabajara.controller.CompraController.efetuarCompra;
+<<<<<<< HEAD
 import static organizacoesTabajara.controller.ProdutoController.*;
+=======
+import static organizacoesTabajara.controller.ProdutoController.cadastrarProduto;
+import static organizacoesTabajara.controller.ProdutoController.produtoVencido;
+import static organizacoesTabajara.controller.CompraController.listarCompras;
+import static organizacoesTabajara.controller.CompraController.buscarCompra;
+>>>>>>> main
 
 public class organizacoesTabajara {
 
@@ -108,6 +115,11 @@ public class organizacoesTabajara {
                 //listarProdutos(); //(b)
                 //buscarProduto();  //(c)
                 //produtoVencido(); //(d)
+<<<<<<< HEAD
+=======
+                //listarCompras(); //(e)
+                //buscarCompra(); //(f)
+>>>>>>> main
                 break;
             case 8:
                 JOptionPane.showMessageDialog(null, "Sistema encerrado.", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
