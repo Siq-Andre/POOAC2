@@ -1,9 +1,6 @@
 package organizacoesTabajara.controller;
 
-import organizacoesTabajara.Cliente.PessoaFisica;
-import organizacoesTabajara.Cliente.PessoaJuridica;
 import organizacoesTabajara.compra.Compra;
-import organizacoesTabajara.endereco.Endereco;
 import organizacoesTabajara.produto.Produto;
 
 import javax.swing.*;
@@ -14,10 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-
-import static organizacoesTabajara.controller.PjController.salvar;
 
 public class CompraController {
 
@@ -25,7 +19,7 @@ public class CompraController {
     private static void salvar(Compra compra) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/organizacoesTabajara/baseDados/compras.txt", true))) {
             // Append no arquivo (true como segundo argumento para FileWriter)
-            writer.write(compra.getIdentificador() + ", " + compra.getDocumentoCliente() + ", " + compra.getQuantidade() + ", " + compra.getProduto() + ", " + compra.getPrecoUnitario() + ", " + compra.getValorTotal()  + ", " + compra.getDataDeCompra());
+            writer.write(compra.getIdentificador() + ", " + compra.getDocumentoCliente() + ", " + compra.getQuantidade() + ", " + compra.paraStringProdutos() + ", " + compra.getPrecoUnitario() + ", " + compra.getValorTotal() + ", " + compra.getValorTotalCompra()  + ", " + compra.getDataDeCompra()  + ", " + compra.getValorPago());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,7 +31,6 @@ public class CompraController {
 
         boolean continuarCompra = true;
         double valorTotalCompra = 0;
-        LocalDateTime dataDeCompra;
         String documento;
 
         documento = JOptionPane.showInputDialog(null, "Digite seu documento:", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
@@ -57,17 +50,18 @@ public class CompraController {
                 try (BufferedReader leitor = new BufferedReader(new FileReader(arquivoProdutos))) {
                     String linha;
                     while ((linha = leitor.readLine()) != null) {
-                        String[] partes = linha.split(",");
+                        String[] partes = linha.split(";");
                         String nome = partes[1].trim();
 
                         if (nome.equalsIgnoreCase(nomeProduto)) {
-
-                            LocalDate validade = LocalDate.parse(partes[4].trim());
+                            System.out.println(partes[4]);
+                            LocalDate validade = !partes[4].equals(" null")?LocalDate.parse(partes[4].trim()):null;
                             double valor = Double.parseDouble(partes[3].trim());
 
                             // Produto encontrado, criar o objeto Produto
                             Produto produto = new Produto(partes[0].trim(), partes[1].trim(), partes[2].trim(), valor, validade);
                             produtos.add(produto);
+                            precoUnitario.add(produto.getPreco());
 
                             // Obter a quantidade desejada pelo cliente
                             int quantidadeTemp = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantidade desejada:", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE));
@@ -95,6 +89,50 @@ public class CompraController {
             valorTotalCompra = 0;
             int resposta = JOptionPane.showConfirmDialog(null, "Deseja realizar outra compra?", "Organizações Tabajara", JOptionPane.YES_NO_OPTION);
             continuarCompra = (resposta == JOptionPane.YES_OPTION);
+        }
+    }
+
+    public static void Pagar(){
+        String id = JOptionPane.showInputDialog(null, "Digite o código da compra: ", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+
+        String arquivoCompras = "src/organizacoesTabajara/baseDados/compras.txt";
+        String arquivoTemporario = "src/organizacoesTabajara/baseDados/temp_compras.txt";
+
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivoCompras));
+             BufferedWriter escritor = new BufferedWriter(new FileWriter(arquivoTemporario))) {
+
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                String codigo = partes[0].trim();
+
+                if (codigo.equals(id)) {
+                    String valorPagamento = JOptionPane.showInputDialog(null, "Digite o valor a pagar: ", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                    double novoValor = Double.parseDouble(partes[8]) + Double.parseDouble(valorPagamento);
+
+                    if (novoValor>Double.parseDouble(partes[6])){
+                        JOptionPane.showMessageDialog(null, "Novo valor excede o valor original da compra! \n o valor pago até o momento foi R$" + partes[8] + "\n o valor da compra é de R$" + partes[6] + "\n o valor faltante é R$" + String.valueOf(Double.parseDouble(partes[6]) - Double.parseDouble(partes[8])).replace("-", ""), "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                    partes[8] = String.valueOf(novoValor);
+
+                    linha = String.join(";", partes);
+
+                    JOptionPane.showMessageDialog(null, "Pagamento realizado com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                escritor.write(linha + System.lineSeparator()); // Escreve a linha no arquivo temporário
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Renomeia o arquivo temporário para substituir o original
+        try {
+            java.nio.file.Files.move(java.nio.file.Paths.get(arquivoTemporario), java.nio.file.Paths.get(arquivoCompras), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

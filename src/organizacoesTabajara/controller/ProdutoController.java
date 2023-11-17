@@ -71,7 +71,7 @@ public class ProdutoController {
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                String[] partes = linha.split(",");
+                String[] partes = linha.split(";");
                 String nomeLinha = partes[1].trim();
 
                 if (nomeLinha.equals(nome)) {
@@ -99,7 +99,7 @@ public class ProdutoController {
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                String[] partes = linha.split(",");
+                String[] partes = linha.split(";");
                 LocalDate dataValidade = LocalDate.parse(partes[5], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
                 // Chame a função para verificar se o produto está vencido

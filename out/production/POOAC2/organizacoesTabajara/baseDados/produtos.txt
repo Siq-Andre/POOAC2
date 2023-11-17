@@ -1,3 +1,3 @@
-10, nome, noem, 10.0, null
-10, nescal, achocolatado, 12.0, 2025-12-11
-11, abobora, legume, 15.0, 2025-01-06
+1, nescal, achocolatado, 12.0, 2025-12-20
+2, Abobora, legume, 20.0, 2024-06-27
+3, teclado, mecanico, 800.0, null
