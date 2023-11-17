@@ -1,0 +1,2 @@
+1, tomate vale do orvalho, tomate vermelho produzido no vale do orvalho, 10.0, 2024-02-10
+2, tomate JOJA, tomate produzido pela companhia JOJA, 5.0, 2023-10-20

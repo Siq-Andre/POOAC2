@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import static organizacoesTabajara.controller.PjController.salvar;
 
@@ -100,14 +101,40 @@ public class CompraController {
 
     //listar todas as compras
     public static void listarCompras(){
-         String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        List<String> compras = new ArrayList<>();
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                JOptionPane.showInputDialog(null, linha, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                compras.add(linha);
+                compras.add("\n");
             }
+            JOptionPane.showInputDialog(null, compras, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace();
         }      
+    }
+    public static void buscarCompra(){
+        String numero = JOptionPane.showInputDialog("Digite o número da compra:");
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        int cont =0;
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                String numLinha = partes[0].trim();
+
+                if (numLinha.equals(numero)) {
+                    JOptionPane.showInputDialog(null, linha.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                    cont++;
+                } 
+            }
+            if (cont ==0) {
+                JOptionPane.showInputDialog(null, "Essa compra não existe", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace(); 
+        }
     }
 }

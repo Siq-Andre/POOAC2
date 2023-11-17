@@ -8,6 +8,8 @@ import static organizacoesTabajara.controller.ProdutoController.buscarProduto;
 import static organizacoesTabajara.controller.ProdutoController.cadastrarProduto;
 import static organizacoesTabajara.controller.ProdutoController.listarProdutos;
 import static organizacoesTabajara.controller.ProdutoController.produtoVencido;
+import static organizacoesTabajara.controller.CompraController.listarCompras;
+import static organizacoesTabajara.controller.CompraController.buscarCompra;
 
 public class organizacoesTabajara {
 
@@ -72,7 +74,9 @@ public class organizacoesTabajara {
                 //buscarCliente(); //(a)
                 //listarProdutos(); //(b)
                 //buscarProduto();  //(c)
-                produtoVencido(); //(d)
+                //produtoVencido(); //(d)
+                //listarCompras(); //(e)
+                //buscarCompra(); //(f)
                 break;
             case 8:
                 JOptionPane.showMessageDialog(null, "Sistema encerrado.", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);

@@ -58,7 +58,7 @@ public class ClienteController {
             // Lê cada linha do arquivo
             while ((linhaAtual = leitor.readLine()) != null) {
                 // Divide a linha usando algum delimitador (ex: vírgula) para obter o CNPJ
-                String[] partes = linhaAtual.split(",");
+                String[] partes = linhaAtual.split(";");
                 String cnpjLinha = partes[1].trim();
 
                 // Verifica se o CNPJ na linha é diferente do CNPJ a ser removido
@@ -88,7 +88,7 @@ public class ClienteController {
             String linhaAtual;
 
             while ((linhaAtual = leitor.readLine()) != null) {
-                String[] partes = linhaAtual.split(",");
+                String[] partes = linhaAtual.split(";");
                 String nomeLinha = partes[0].trim();
 
                 if (!nomeLinha.equals(nome)) {
@@ -126,7 +126,7 @@ public class ClienteController {
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                String[] partes = linha.split(",");
+                String[] partes = linha.split(";");
                 String nomeLinha = partes[0].trim();
 
                 if (nomeLinha.equals(nome)) {
