@@ -263,17 +263,72 @@ public class CompraController {
     }
     public static void compraMes(){ //minha ideia aqui é fazer dois whiles. Um percorre o arquivo todo como normal e outro a cada mes faz uma somatoria dos valores de compra
         String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
-        List<Double> valorMeses = new ArrayList<>();
-        double somatoriaMes;
+        String resposta = "";
+        double[] meses = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                String[] partes = linha.split(";");
-                LocalDate mes = LocalDate.parse(partes[7], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
+                String[] partes = linha.split(";");   
+                String ;
+                String mes = partes[7].substring(6,8);
+                switch (mes) {
+                    case "1":
+                        meses[0] += Double.parseDouble(partes[6].trim());
+                        break;
+                    
+                    case "2":
+                        meses[1] += Double.parseDouble(partes[6].trim());
+                        break;
                 
+                    case "3":
+                        meses[2] += Double.parseDouble(partes[6].trim());
+                        break;
+                    
+                    case "4":
+                        meses[3] += Double.parseDouble(partes[6].trim());
+                        break;
+                    
+                    case "5":
+                        meses[4] += Double.parseDouble(partes[6].trim());
+                        break;
+                    
+                    case "6":
+                        meses[5] += Double.parseDouble(partes[6].trim());
+                        break;
+                
+                    case "7":
+                        meses[6] += Double.parseDouble(partes[6].trim());
+                        break;
+                    
+                    case "8":
+                        meses[7] += Double.parseDouble(partes[6].trim());
+                        break;
+
+                    case "9":
+                        meses[8] += Double.parseDouble(partes[6].trim());
+                        break;
+                    
+                    case "10":
+                        meses[9] += Double.parseDouble(partes[6].trim());
+                        break;
+                
+                    case "11":
+                        meses[10] += Double.parseDouble(partes[6].trim());
+                        break;
+                   
+                    default:
+                        meses[11] += Double.parseDouble(partes[6].trim());
+                        break;              
+
+                }
+
             }
-            JOptionPane.showMessageDialog(null, valorMeses, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            int i = 1;
+            for (double mes : meses) {                
+                resposta += ("Mês: " + i + " - " + mes + "\n\n");
+                i++;
+            }
+            JOptionPane.showMessageDialog(null, resposta, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace(); 
         }      
