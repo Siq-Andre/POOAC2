@@ -20,8 +20,8 @@ import static organizacoesTabajara.controller.PjController.salvar;
 public class ClienteController {
     //funçao para cadastrar os dados de um novo cliente
     public static void cadastrarCliente() {
-        String nome = JOptionPane.showInputDialog("Digite o nome do cliente:");
         String documento = JOptionPane.showInputDialog("Digite o CPF ou CNPJ do cliente:");
+        String nome = JOptionPane.showInputDialog("Digite o nome do cliente ou razão social da empresa:");
         String rua = JOptionPane.showInputDialog("Digite a rua: ");
         String numero = JOptionPane.showInputDialog("Digite o numero: ");
         String bairro = JOptionPane.showInputDialog("Digite o bairro: ");
@@ -33,14 +33,13 @@ public class ClienteController {
         //verificação se o cliente é pessoa fisica ou juridica. Se o documento possui mais de 11 digitos, é um CNPJ
         if (documento.length() > 11){
             PessoaJuridica pj = new PessoaJuridica(nome, documento, endereco);
-            String razaoSocial = JOptionPane.showInputDialog("Digite a razão social da empresa: ");
             int prazoMaxPagamento = Integer.parseInt(JOptionPane.showInputDialog("Digite o prazo máximo de pagamento da empresa (em dias): "));
             salvar(pj);
         }
         //se nao for um CNPJ, então é um CPF
         else{
-            PessoaFisica pf = new PessoaFisica(nome, documento, endereco);
             int qtdeMaxParcelas = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade maxima de parcelas a serem pagas: "));
+            PessoaFisica pf = new PessoaFisica(nome, documento, endereco, qtdeMaxParcelas);
             salvar(pf);
         }
         JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);

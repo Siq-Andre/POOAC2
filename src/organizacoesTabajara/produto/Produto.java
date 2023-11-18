@@ -3,15 +3,15 @@ package organizacoesTabajara.produto;
 import java.time.LocalDate;
 
 public class Produto {
-    protected String codigo;
+    protected static int codigo = 0;
     protected String nome;
     protected String descricao;
     protected double preco;
     protected LocalDate validade;
     
     //construtor para organizacoesTabajara.produto com data de validade
-    public Produto(String codigo, String nome, String descricao, double preco, LocalDate validade) {
-        this.codigo = codigo;
+    public Produto(String nome, String descricao, double preco, LocalDate validade) {
+        this.codigo += 1;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
@@ -20,18 +20,18 @@ public class Produto {
 
     //construtor para produtos sem data de validade
     public Produto(String codigo, String nome, String descricao, double preco) {
-        this.codigo = codigo;
+        this.codigo += 1;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.validade = null;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 

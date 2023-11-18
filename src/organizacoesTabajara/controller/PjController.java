@@ -14,7 +14,7 @@ public class PjController {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("clientes.txt", true))) {
             Endereco endereco = pj.getEnderecoCliente();
             // Append no arquivo (true como segundo argumento para FileWriter)
-            writer.write(pj.getNome() + ", " + pj.getDocumento() + ", " + pj.getRazaoSocial() + ", " +pj.getPrazoMaxPagamento() + ", " + endereco.paraString());
+            writer.write(pj.getRazaoSocial() + "; " + pj.getDocumento() + "; " +pj.getPrazoMaxPagamento() + "; " + endereco.paraString());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();

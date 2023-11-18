@@ -16,7 +16,6 @@ import java.util.List;
 
 public class ProdutoController {
     public static void cadastrarProduto(){
-        String codigo = JOptionPane.showInputDialog("Digite o código do produto:");
         String nome = JOptionPane.showInputDialog("Digite o nome do produto:");
         String descricao = JOptionPane.showInputDialog("Digite a descricao do produto: ");
         double preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o preco do produto: "));
@@ -30,7 +29,7 @@ public class ProdutoController {
             validadeFormatada = LocalDate.parse(validade, formatter);
         }
 
-        Produto produto = new Produto(codigo, nome, descricao, preco, validadeFormatada);
+        Produto produto = new Produto(nome, descricao, preco, validadeFormatada);
         salvar(produto);
 
         JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
@@ -38,7 +37,7 @@ public class ProdutoController {
     private static void salvar(Produto produto) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/organizacoesTabajara/baseDados/produtos.txt", true))) {
             // Append no arquivo (true como segundo argumento para FileWriter)
-            writer.write(produto.getCodigo() + ", " + produto.getNome() + ", " + produto.getDescricao() + ", " + produto.getPreco() + ", " + produto.getValidade());
+            writer.write(produto.getCodigo() + "; " + produto.getNome() + "; " + produto.getDescricao() + "; " + produto.getPreco() + "; " + produto.getValidade());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();

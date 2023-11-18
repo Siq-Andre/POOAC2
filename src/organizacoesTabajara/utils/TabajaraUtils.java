@@ -1,4 +1,4 @@
-package organizacoesTabajara;
+package organizacoesTabajara.utils;
 
 import javax.swing.JOptionPane;
 
@@ -6,17 +6,9 @@ import static organizacoesTabajara.controller.ClienteController.*;
 import static organizacoesTabajara.controller.CompraController.*;
 import static organizacoesTabajara.controller.ProdutoController.*;
 
-public class organizacoesTabajara {
+public class TabajaraUtils {
 
-    public static void main(String[] args) {
-        int opcao;
-        do {
-            opcao = exibirMenu();
-            executarOpcao(opcao);
-        } while (opcao != 8);
-    }
-
-    private static int exibirMenu() {
+    protected static int exibirMenu() {
         String menu = "Sistema de Gestão\n" +
                 "1. Cadastrar Cliente\n" +
                 "2. Deletar Cliente por CPF ou CNPJ\n" +
@@ -86,7 +78,7 @@ public class organizacoesTabajara {
             }
         }
 
-    private static void executarOpcao(int opcao) {
+    protected static void executarOpcao(int opcao) {
         switch (opcao) {
             case 1:
                 cadastrarCliente();

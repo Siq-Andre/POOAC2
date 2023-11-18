@@ -25,7 +25,7 @@ public class CompraController {
     private static void salvar(Compra compra) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/organizacoesTabajara/baseDados/compras.txt", true))) {
             // Append no arquivo (true como segundo argumento para FileWriter)
-            writer.write(compra.getIdentificador() + ", " + compra.getDocumentoCliente() + ", " + compra.getQuantidade() + ", " + compra.paraStringProdutos() + ", " + compra.getPrecoUnitario() + ", " + compra.getValorTotal() + ", " + compra.getValorTotalCompra()  + ", " + compra.getDataDeCompra()  + ", " + compra.getValorPago());
+            writer.write(compra.getIdentificador() + "; " + compra.getDocumentoCliente() + "; " + compra.getQuantidade() + "; " + compra.paraStringProdutos() + "; " + compra.getPrecoUnitario() + "; " + compra.getValorTotal() + "; " + compra.getValorTotalCompra()  + "; " + compra.getDataDeCompra()  + "; " + compra.getValorPago());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,12 +60,11 @@ public class CompraController {
                         String nome = partes[1].trim();
 
                         if (nome.equalsIgnoreCase(nomeProduto)) {
-                            System.out.println(partes[4]);
                             LocalDate validade = !partes[4].equals(" null")?LocalDate.parse(partes[4].trim()):null;
                             double valor = Double.parseDouble(partes[3].trim());
 
                             // Produto encontrado, criar o objeto Produto
-                            Produto produto = new Produto(partes[0].trim(), partes[1].trim(), partes[2].trim(), valor, validade);
+                            Produto produto = new Produto(partes[1].trim(), partes[2].trim(), valor, validade);
                             produtos.add(produto);
                             precoUnitario.add(produto.getPreco());
 
@@ -265,7 +264,7 @@ public class CompraController {
             e.printStackTrace();
         }      
     }
-    public static void compraMes(){ //minha ideia aqui é fazer dois whiles. Um percorre o arquivo todo como normal e outro a cada mes faz uma somatoria dos valores de compra
+    public static void compraMes(){ //minha ideia aqui é fazer dois whiles. Um percorre o arquivo inteiro como normal e outro a cada mes faz uma somatoria dos valores de compra
         String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
         String resposta = "";
         double[] meses = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

@@ -15,7 +15,7 @@ public class PfController {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/organizacoesTabajara/baseDados/clientes.txt", true))) {
             Endereco endereco = pf.getEnderecoCliente();
             // Append no arquivo (true como segundo argumento para FileWriter)
-            writer.write(pf.getNome() + ", " + pf.getDocumento() + ", " + pf.getQtdeMaxParcelas() + ", " + endereco.paraString());
+            writer.write(pf.getNome() + "; " + pf.getDocumento() + "; " + pf.getQtdeMaxParcelas() + "; " + endereco.paraString());
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();

@@ -8,6 +8,7 @@ public class PessoaJuridica extends Cliente{
 
     public PessoaJuridica(String nome, String documento, Endereco enderecoCliente) {
         super(nome, documento, enderecoCliente);
+        this.razaoSocial = nome;
     }
 
     public String getCNPJ() {

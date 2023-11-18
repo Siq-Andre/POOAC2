@@ -5,8 +5,9 @@ import organizacoesTabajara.endereco.Endereco;
 public class PessoaFisica extends Cliente {
     private int qtdeMaxParcelas;
 
-    public PessoaFisica(String nome, String documento, Endereco enderecoCliente) {
+    public PessoaFisica(String nome, String documento, Endereco enderecoCliente, int qtdeMaxParcelas) {
         super(nome, documento, enderecoCliente);
+        this.qtdeMaxParcelas = qtdeMaxParcelas;
     }
 
     public String getCPF() {

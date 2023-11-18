@@ -1,3 +1,5 @@
-1; nescal; achocolatado; 12.0; 2025-12-20
-2; Abobora; legume; 20.0; 2024-06-27
-3; teclado; mecanico; 800.0; null
+1; cenoura; legume; 8.0; 2023-11-26
+2; teclado; periferico; 800.0; null
+3; geladeira; eletrodomestico; 5000.0; null
+4; celular; smartphone; 15000.0; null
+5; nescal; achocolatado; 12.0; 2026-12-26

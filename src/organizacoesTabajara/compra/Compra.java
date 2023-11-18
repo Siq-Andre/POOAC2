@@ -2,6 +2,9 @@ package organizacoesTabajara.compra;
 
 import organizacoesTabajara.produto.Produto;
 
+import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,8 +18,7 @@ public class Compra {
     protected static int identificador;
     protected LocalDate dataDeCompra;
     protected String documentoCliente; //esse atributo será preenchido com o CPF ou CNPJ do cliente
-    
-    
+
     public Compra(ArrayList<Integer> quantidade, ArrayList<Produto> produtos, ArrayList<Double> precoUnitario, ArrayList<Double> valorTotalItem, double valorTotalCompra, String documento) {
         this.quantidade = quantidade;
         this.produtos = produtos;

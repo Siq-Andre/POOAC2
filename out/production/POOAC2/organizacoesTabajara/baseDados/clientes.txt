@@ -1,4 +1,5 @@
-Rafael Leite, 51055052801, 0, Rua: a Número: 2 Bairro: c CEP: 12 Cidade: sorocaba Estado: sp
-Rafael Leite, 51055052801, 0, Rua: a Número: 2 Bairro: c CEP: 12 Cidade: sorocaba Estado: sp
-andre, 51055052801, 0, Rua: a Número: 2 Bairro: c CEP: 12 Cidade: sorocaba Estado: sp
-Rafael , 51055052801, 0, Rua: a Número: 2 Bairro: c CEP: 12 Cidade: sorocaba Estado: sp
+João da Silva, 12345678912, 5, Rua: Laranjeiras Número: 123 Bairro: Americanas CEP: 18055369 Cidade: Sorocaba Estado: SP
+Pedro Alvares EIRELI; 12345678912345; 0; Rua: China Número: 345 Bairro: Pequin CEP: 18455269 Cidade: Sorocaba Estado: SP
+Andre Alvares LTDA; 12345678912300; 0; Rua: China Número: 345 Bairro: Pequin CEP: 18455269 Cidade: Sorocaba Estado: SP
+Rafael Leite, 12345678002, 3, Rua: Laranjeiras Número: 123 Bairro: Americanas CEP: 18055369 Cidade: Sorocaba Estado: SP
+Isabele Maria, 12159622212, 10, Rua: Laranjeiras Número: 123 Bairro: Americanas CEP: 18055369 Cidade: Sorocaba Estado: SP
