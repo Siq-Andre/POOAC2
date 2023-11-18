@@ -11,8 +11,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CompraController {
 
@@ -147,7 +152,7 @@ public class CompraController {
                 compras.add(linha);
                 compras.add("\n");
             }
-            JOptionPane.showInputDialog(null, compras, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, compras, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace();
         }      
@@ -163,16 +168,190 @@ public class CompraController {
                 String numLinha = partes[0].trim();
 
                 if (numLinha.equals(numero)) {
-                    JOptionPane.showInputDialog(null, linha.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, linha.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
                     cont++;
                 } 
             }
             if (cont ==0) {
-                JOptionPane.showInputDialog(null, "Essa compra não existe", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Essa compra não existe", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
             }
         }
         catch (IOException e) {
             e.printStackTrace(); 
         }
+    }
+
+    public static void comprasNaoPagas(){
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        List<String> comprasNaoPagas = new ArrayList<>();
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                double valorTotalCompra = Double.parseDouble(partes[6].trim());
+                double valorPago = Double.parseDouble(partes[8].trim());
+                if(valorPago != valorTotalCompra){
+                    comprasNaoPagas.add(linha);
+                    comprasNaoPagas.add("\n");
+                }                 
+            }
+            JOptionPane.showMessageDialog(null, comprasNaoPagas, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
+    }
+    public static void compraMaisCara(){
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        String infoCompra = null;
+        double valor;
+        double maisCara = -1;
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                valor = Double.parseDouble(partes[6].trim());
+                if (maisCara == -1){
+                    maisCara = Double.parseDouble(partes[6].trim());
+                    infoCompra = linha;
+                }
+                if(valor > maisCara){
+                    infoCompra = linha;
+                    maisCara = valor;
+                }                                
+            }
+            JOptionPane.showMessageDialog(null, infoCompra, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
+    }
+    public static void compraMaisBarata(){
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        String infoCompra = null;
+        double valor;
+        double maisBarata = -1;
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+                valor = Double.parseDouble(partes[6].trim());
+                if (maisBarata == -1){
+                    maisBarata = Double.parseDouble(partes[6].trim());
+                    infoCompra = linha;
+                }
+                if(valor < maisBarata){
+                    infoCompra = linha;
+                    maisBarata = valor;
+                }                                
+            }
+            JOptionPane.showMessageDialog(null, infoCompra, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
+    }
+    public static void ultimosPagamentos(){
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        List<String> compras = new ArrayList<>();
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                compras.add(linha);
+                compras.add("\n");
+                if(compras.size() > 10){
+                    compras.remove(0);
+                }
+            }
+            JOptionPane.showMessageDialog(null, compras, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }      
+    }
+    public static void compraMes(){ //minha ideia aqui é fazer dois whiles. Um percorre o arquivo todo como normal e outro a cada mes faz uma somatoria dos valores de compra
+        String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
+        String resposta = "";
+        double[] meses = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        ArrayList<String> mesesAnalise = new ArrayList<>();
+        try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+
+            String linha;
+
+            LocalDate anoAtual = LocalDate.now().plusMonths(1);
+            LocalDate anoPassado = LocalDate.now().minusYears(1).plusMonths(1);
+            ArrayList<Month> ordemMes = new ArrayList<>();
+
+            while(anoPassado.getMonth() != anoAtual.getMonth() || anoPassado.getYear() != anoAtual.getYear()){
+                mesesAnalise.add(anoPassado.toString().substring(0,7));
+                ordemMes.add(anoPassado.getMonth());
+                anoPassado = anoPassado.plusMonths(1);
+            }
+
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+
+               String anoMesAnalise = partes[7].trim().substring(0,7);
+                   if (mesesAnalise.contains(anoMesAnalise)) {
+                       double valor = Double.parseDouble(partes[6].trim());
+                        String mesAnalise = anoMesAnalise.substring(5,7);
+                       switch (mesAnalise) {
+                           case "01":
+                               meses[0] += valor;
+                               break;
+
+                           case "02":
+                               meses[1] += valor;
+                               break;
+
+                           case "03":
+                               meses[2] += valor;
+                               break;
+
+                           case "04":
+                               meses[3] += valor;
+                               break;
+
+                           case "05":
+                               meses[4] += valor;
+                               break;
+
+                           case "06":
+                               meses[5] += valor;
+                               break;
+
+                           case "07":
+                               meses[6] += valor;
+                               break;
+
+                           case "08":
+                               meses[7] += valor;
+                               break;
+
+                           case "09":
+                               meses[8] += valor;
+                               break;
+
+                           case "10":
+                               meses[9] += valor;
+                               break;
+
+                           case "11":
+                               meses[10] += valor;
+                               break;
+
+                           default:
+                               meses[11] += valor;
+                               break;
+
+                       }
+                   }
+            }
+            int i =0;
+
+            for (double mes : meses) {
+                resposta += (mesesAnalise.get(i).substring(0,4) + "/" + ordemMes.get(i) + " - " + meses[ordemMes.get(i).getValue() - 1] + "\n\n");
+                i++;
+            }
+            JOptionPane.showMessageDialog(null, resposta, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }      
     }
 }
