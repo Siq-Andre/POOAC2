@@ -119,7 +119,7 @@ public class ClienteController {
 
     //funçao para buscar cliente especifico
     public static void buscarCliente(){
-        String nome = JOptionPane.showInputDialog("Digite o nome do cliente:");
+        String nome = JOptionPane.showInputDialog("Digite o nome do cliente:").toLowerCase();
         String arquivo = "src/organizacoesTabajara/baseDados/clientes.txt";
         List<String> clientesEncontrados = new ArrayList<>();
 
@@ -127,9 +127,9 @@ public class ClienteController {
             String linha;
             while ((linha = leitor.readLine()) != null) {
                 String[] partes = linha.split(";");
-                String nomeLinha = partes[0].trim();
+                String nomeLinha = partes[0].trim().toLowerCase();
 
-                if (nomeLinha.equals(nome)) {
+                if (nomeLinha.startsWith(nome)) {
                     clientesEncontrados.add(linha);
                 }
             }

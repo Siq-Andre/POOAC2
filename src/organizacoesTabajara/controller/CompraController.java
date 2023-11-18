@@ -11,9 +11,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CompraController {
 
@@ -265,67 +269,84 @@ public class CompraController {
         String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
         String resposta = "";
         double[] meses = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        ArrayList<String> mesesAnalise = new ArrayList<>();
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
+
             String linha;
-            while ((linha = leitor.readLine()) != null) {
-                String[] partes = linha.split(";");   
-                String ;
-                String mes = partes[7].substring(6,8);
-                switch (mes) {
-                    case "1":
-                        meses[0] += Double.parseDouble(partes[6].trim());
-                        break;
-                    
-                    case "2":
-                        meses[1] += Double.parseDouble(partes[6].trim());
-                        break;
-                
-                    case "3":
-                        meses[2] += Double.parseDouble(partes[6].trim());
-                        break;
-                    
-                    case "4":
-                        meses[3] += Double.parseDouble(partes[6].trim());
-                        break;
-                    
-                    case "5":
-                        meses[4] += Double.parseDouble(partes[6].trim());
-                        break;
-                    
-                    case "6":
-                        meses[5] += Double.parseDouble(partes[6].trim());
-                        break;
-                
-                    case "7":
-                        meses[6] += Double.parseDouble(partes[6].trim());
-                        break;
-                    
-                    case "8":
-                        meses[7] += Double.parseDouble(partes[6].trim());
-                        break;
 
-                    case "9":
-                        meses[8] += Double.parseDouble(partes[6].trim());
-                        break;
-                    
-                    case "10":
-                        meses[9] += Double.parseDouble(partes[6].trim());
-                        break;
-                
-                    case "11":
-                        meses[10] += Double.parseDouble(partes[6].trim());
-                        break;
-                   
-                    default:
-                        meses[11] += Double.parseDouble(partes[6].trim());
-                        break;              
+            LocalDate anoAtual = LocalDate.now().plusMonths(1);
+            LocalDate anoPassado = LocalDate.now().minusYears(1).plusMonths(1);
+            ArrayList<Month> ordemMes = new ArrayList<>();
 
-                }
-
+            while(anoPassado.getMonth() != anoAtual.getMonth() || anoPassado.getYear() != anoAtual.getYear()){
+                mesesAnalise.add(anoPassado.toString().substring(0,7));
+                ordemMes.add(anoPassado.getMonth());
+                anoPassado = anoPassado.plusMonths(1);
             }
-            int i = 1;
-            for (double mes : meses) {                
-                resposta += ("Mês: " + i + " - " + mes + "\n\n");
+
+            while ((linha = leitor.readLine()) != null) {
+                String[] partes = linha.split(";");
+
+               String anoMesAnalise = partes[7].trim().substring(0,7);
+                   if (mesesAnalise.contains(anoMesAnalise)) {
+                       double valor = Double.parseDouble(partes[6].trim());
+                        String mesAnalise = anoMesAnalise.substring(5,7);
+                       switch (mesAnalise) {
+                           case "01":
+                               meses[0] += valor;
+                               break;
+
+                           case "02":
+                               meses[1] += valor;
+                               break;
+
+                           case "03":
+                               meses[2] += valor;
+                               break;
+
+                           case "04":
+                               meses[3] += valor;
+                               break;
+
+                           case "05":
+                               meses[4] += valor;
+                               break;
+
+                           case "06":
+                               meses[5] += valor;
+                               break;
+
+                           case "07":
+                               meses[6] += valor;
+                               break;
+
+                           case "08":
+                               meses[7] += valor;
+                               break;
+
+                           case "09":
+                               meses[8] += valor;
+                               break;
+
+                           case "10":
+                               meses[9] += valor;
+                               break;
+
+                           case "11":
+                               meses[10] += valor;
+                               break;
+
+                           default:
+                               meses[11] += valor;
+                               break;
+
+                       }
+                   }
+            }
+            int i =0;
+
+            for (double mes : meses) {
+                resposta += (mesesAnalise.get(i).substring(0,4) + "/" + ordemMes.get(i) + " - " + meses[ordemMes.get(i).getValue() - 1] + "\n\n");
                 i++;
             }
             JOptionPane.showMessageDialog(null, resposta, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
