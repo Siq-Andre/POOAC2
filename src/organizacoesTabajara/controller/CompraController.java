@@ -148,7 +148,7 @@ public class CompraController {
         List<String> compras = new ArrayList<>();
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
-            while ((linha = leitor.readLine()) != null) {
+            while ((linha = leitor.readLine()) != null) { //esse while passa por todas as linhas do arquivo e as salvam em compras
                 compras.add(linha);
                 compras.add("\n");
             }
@@ -167,12 +167,12 @@ public class CompraController {
                 String[] partes = linha.split(";");
                 String numLinha = partes[0].trim();
 
-                if (numLinha.equals(numero)) {
+                if (numLinha.equals(numero)) { //verifica se o numero inputado pelo o usuario é igual ao numero da linha sendo lida no momento
                     JOptionPane.showMessageDialog(null, linha.toString(), "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
-                    cont++;
+                    cont++; //contador pra garantir que pelo menos uma linha é compativel
                 } 
             }
-            if (cont ==0) {
+            if (cont ==0) { //caso não haja linha com numero compativel
                 JOptionPane.showMessageDialog(null, "Essa compra não existe", "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
             }
         }
@@ -190,7 +190,7 @@ public class CompraController {
                 String[] partes = linha.split(";");
                 double valorTotalCompra = Double.parseDouble(partes[6].trim());
                 double valorPago = Double.parseDouble(partes[8].trim());
-                if(valorPago != valorTotalCompra){
+                if(valorPago != valorTotalCompra){ //verifica se os valores de valor da compra e valor pago são diferntes, ou seja, se ainda resta um valor a ser pago
                     comprasNaoPagas.add(linha);
                     comprasNaoPagas.add("\n");
                 }                 
@@ -210,13 +210,13 @@ public class CompraController {
             while ((linha = leitor.readLine()) != null) {
                 String[] partes = linha.split(";");
                 valor = Double.parseDouble(partes[6].trim());
-                if (maisCara == -1){
+                if (maisCara == -1){ //atribui a primeira compra lida como a mais cara
                     maisCara = Double.parseDouble(partes[6].trim());
                     infoCompra = linha;
                 }
-                if(valor > maisCara){
+                if(valor > maisCara){ //se o valor atualmente lido for maior que o valor da maisCara
                     infoCompra = linha;
-                    maisCara = valor;
+                    maisCara = valor;//maisCara recebe agora o valor da compra maior que ela
                 }                                
             }
             JOptionPane.showMessageDialog(null, infoCompra, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
@@ -234,13 +234,13 @@ public class CompraController {
             while ((linha = leitor.readLine()) != null) {
                 String[] partes = linha.split(";");
                 valor = Double.parseDouble(partes[6].trim());
-                if (maisBarata == -1){
+                if (maisBarata == -1){//atribui a primeira compra lida como a mais barata
                     maisBarata = Double.parseDouble(partes[6].trim());
                     infoCompra = linha;
                 }
-                if(valor < maisBarata){
+                if(valor < maisBarata){ //se o valor atualmente lido for menor que o valor da maisBarata
                     infoCompra = linha;
-                    maisBarata = valor;
+                    maisBarata = valor;//maisBarata recebe agora o valor da compra menor que ela
                 }                                
             }
             JOptionPane.showMessageDialog(null, infoCompra, "Organizações Tabajara", JOptionPane.PLAIN_MESSAGE);
@@ -268,8 +268,8 @@ public class CompraController {
     public static void compraMes(){ //minha ideia aqui é fazer dois whiles. Um percorre o arquivo todo como normal e outro a cada mes faz uma somatoria dos valores de compra
         String arquivo = "src/organizacoesTabajara/baseDados/compras.txt";
         String resposta = "";
-        double[] meses = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        ArrayList<String> mesesAnalise = new ArrayList<>();
+        double[] meses = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; //vetor para o valor de compras para cada mes sendo inicializado
+        ArrayList<String> mesesAnalise = new ArrayList<>(); //lista para os meses
         try (BufferedReader leitor = new BufferedReader(new FileReader(arquivo))) {
 
             String linha;
@@ -278,10 +278,10 @@ public class CompraController {
             LocalDate anoPassado = LocalDate.now().minusYears(1).plusMonths(1);
             ArrayList<Month> ordemMes = new ArrayList<>();
 
-            while(anoPassado.getMonth() != anoAtual.getMonth() || anoPassado.getYear() != anoAtual.getYear()){
-                mesesAnalise.add(anoPassado.toString().substring(0,7));
+            while(anoPassado.getMonth() != anoAtual.getMonth() || anoPassado.getYear() != anoAtual.getYear()){ //condição para se limitar aos ultimos 12 meses
+                mesesAnalise.add(anoPassado.toString().substring(0,7));//verifica o mes cadastrado
                 ordemMes.add(anoPassado.getMonth());
-                anoPassado = anoPassado.plusMonths(1);
+                anoPassado = anoPassado.plusMonths(1);//diferencia os meses que ainda não passaram nesse ano, ou seja, que terão valores do ano passado
             }
 
             while ((linha = leitor.readLine()) != null) {
@@ -291,7 +291,7 @@ public class CompraController {
                    if (mesesAnalise.contains(anoMesAnalise)) {
                        double valor = Double.parseDouble(partes[6].trim());
                         String mesAnalise = anoMesAnalise.substring(5,7);
-                       switch (mesAnalise) {
+                       switch (mesAnalise) { //atribuindo o valor de cada mês
                            case "01":
                                meses[0] += valor;
                                break;

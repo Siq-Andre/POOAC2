@@ -108,15 +108,6 @@ public class organizacoesTabajara {
                 break;
             case 7:
                 exibirRelatorios();
-
-                //funções para serem chamadas no exibir relatorio
-                //buscarCliente(); //(a)
-                //listarProdutos(); //(b)
-                //buscarProduto();  //(c)
-                //produtoVencido(); //(d)
-                //listarCompras(); //(e)
-                //buscarCompra(); //(f)
-                //comprasNaoPagas(); //(g)
                 break;
             case 8:
                 JOptionPane.showMessageDialog(null, "Sistema encerrado.", "Organizações Tabajara", JOptionPane.INFORMATION_MESSAGE);
